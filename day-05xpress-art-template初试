@@ -1,0 +1,21 @@
+var express = require('express')
+//var bodyParser = require('body-parser')
+var app = express()
+// app.use('/public/',express.static('./public/'))
+app.use('/public/',express.static('./public/'))
+
+app.engine('html', require('express-art-template'))
+app.get('/',function(req,res){
+	res.render('404.html')
+})
+app.get('/admin',function(req,res){
+	res.render('admin/index.html',{
+		title:'hell3'//注意这个值是字符串，不加引号就成了对象 会报引用错误
+	})
+})
+app.get('/post',function(req,res){
+	res.render('post.html')
+})
+app.listen(3000,function(){
+	console.log('running...')
+})
